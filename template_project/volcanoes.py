@@ -23,39 +23,14 @@ df = deepcopy(volc_df_raw)
 # Add title and header
 st.title("Volcanoes World Map")
 
+st.header("Based on Type of Volcano")
 
 fig = px.scatter_mapbox(df, lat="Latitude", lon="Longitude", hover_name="Volcano Name", hover_data=["Status", "Type"],
-                        color_discrete_sequence=["red"], zoom=0.5, height=300)
+                        color="Type", zoom=0.5, height=400, width=800)
 
 fig.update_layout(mapbox_style="open-street-map")
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
-if st.checkbox("Show Map"):
-    st.plotly_chart(fig)
 
-st.header("Based on Type of Volcano")
+st.plotly_chart(fig)
 
-
-
-left_column, middle_column, right_column = st.columns([3, 1, 1])
-
-
-
-# Widgets: selectbox
-types = ["All"]+sorted(pd.unique(df['Type']))
-type = left_column.selectbox("Choose a Type", types)
-
-if type == "All":
-    reduced_df = df
-else:
-    reduced_df = df[df["Type"] == type]
-
-
-fig2 = px.scatter_mapbox(reduced_df, lat="Latitude", lon="Longitude", hover_name="Volcano Name", hover_data=["Status", "Type"],
-                        color_discrete_sequence=["red"], zoom=0.5, height=300)
-
-fig2.update_layout(mapbox_style="open-street-map")
-fig2.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
-
-
-st.plotly_chart(fig2)
