@@ -7,6 +7,8 @@ import plotly.graph_objects as go
 from urllib.request import urlopen
 import json
 from copy import deepcopy
+import os
+
 
 
 
@@ -34,3 +36,8 @@ fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 
 st.plotly_chart(fig)
 
+
+#dir_path = os.path.dirname(os.path.realpath(__file__))
+
+#urlcsv=dir_path+"/volcano_ds_pop.csv"
+#volcanoes = pd.read_csv(urlcsv, index_col = 0)
