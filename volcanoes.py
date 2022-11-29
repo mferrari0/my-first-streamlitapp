@@ -19,7 +19,7 @@ def load_data(path):
     return df
 
 
-volc_df_raw = load_data(path="./data/volcano_ds_pop.csv")
+volc_df_raw = load_data(path="./template_project/data/volcano_ds_pop.csv")
 df = deepcopy(volc_df_raw)
 
 # Add title and header
